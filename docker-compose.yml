@@ -1,0 +1,34 @@
+version: '3.8'
+
+# Environment variables should be set here during deployment.
+
+services:
+  mqtt-to-postgres-appid1:
+    build: .
+    image: mqtt-to-postgres:latest
+    container_name: mqtt-to-postgres-appid1
+    environment:
+      MQTT_BROKER: "myvm.northcentralus.cloudapp.azure.com"
+      MQTT_PORT: "8883"
+      MQTT_TOPIC: "v3/+/devices/+/up"
+      MQTT_USERNAME: "appid1"
+      MQTT_PASSWORD: "appkey1"
+      DB_HOST: "mypostgres.postgres.database.azure.com"
+      DB_NAME: "time_series_data"
+      DB_USER: "dbuser"
+      DB_PASSWORD: "changeme"
+
+  mqtt-to-postgres-appid2:
+    build: .
+    image: mqtt-to-postgres:latest
+    container_name: mqtt-to-postgres-appid2
+    environment:
+      MQTT_BROKER: "myvm.northcentralus.cloudapp.azure.com"
+      MQTT_PORT: "8883"
+      MQTT_TOPIC: "v3/+/devices/+/up"
+      MQTT_USERNAME: "appid2"
+      MQTT_PASSWORD: "appkey2"
+      DB_HOST: "mypostgres.postgres.database.azure.com"
+      DB_NAME: "time_series_data"
+      DB_USER: "dbuser"
+      DB_PASSWORD: "changeme"

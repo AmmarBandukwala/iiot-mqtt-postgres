@@ -1,0 +1,6 @@
+psycopg2-binary
+pytest
+pyyaml
+requests
+paho-mqtt==1.6.1
+python-dotenv
