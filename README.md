@@ -53,6 +53,6 @@ These instructions will help you set up and run the Docker-Compose solutions on 
 │   └── mqttconnector.py
 └── lorawan-network-server-deploy
     ├── docker-compose.yml
-└── └── config/stack
-    ├── ttn-lw-stack-docker.yml
+    ├── config/stack
+    └── ttn-lw-stack-docker.yml
 ```
