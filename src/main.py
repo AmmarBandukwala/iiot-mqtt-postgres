@@ -7,7 +7,7 @@ import os
 
 from dotenv import load_dotenv
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
-from src.mqttconnector import MqttProvider
+from mqttconnector import MqttConnector
 
 def on_message(client, userdata, msg):
 
