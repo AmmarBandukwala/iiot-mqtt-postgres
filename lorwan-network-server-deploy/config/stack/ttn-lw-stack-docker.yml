@@ -1,0 +1,131 @@
+# Identity Server configuration
+# Email configuration for "CHANGEME.com"
+is:
+  email:
+    sender-name: "The Thing Stack"
+    sender-address: "johndoe@gmail.com"
+    network:
+      name: "The Things Stack"
+      console-url: "https://CHANGEME.com/console"
+      identity-server-url: "https://CHANGEME.com/oauth"
+
+    # If sending email with Sendgrid
+    # provider: sendgrid
+    # sendgrid:
+    #   api-key: '...'              # enter Sendgrid API key
+
+    # If sending email with SMTP
+    # provider: smtp
+    # smtp:
+    #   address:  '...'             # enter SMTP server address
+    #   username: '...'             # enter SMTP server username
+    #   password: '...'             # enter SMTP server password
+
+  # Web UI configuration for "CHANGEME.com":
+  oauth:
+    ui:
+      canonical-url: "https://CHANGEME.com/oauth"
+      is:
+        base-url: "https://CHANGEME.com/api/v3"
+
+# HTTP server configuration
+http:
+  cookie:
+    block-key: "e3af727fd78b30b5bc5e08bdc6ac9e791c318264cf635beca90f364f62b2af5b" # generate 32 bytes (openssl rand -hex 32)
+    hash-key: "d34a5607208f3461af7eb6d239bd42194c970a3f00d0d836d495e923059f762a59331f9b915255c80e7afd91a701e2141e26df2987a5c781afa19add6e842811" # generate 64 bytes (openssl rand -hex 64)
+  metrics:
+    password: "metrics" # choose a password
+  pprof:
+    password: "pprof" # choose a password
+
+# If using custom certificates:
+# tls:
+#   source: file
+#   root-ca: /run/secrets/ca.pem
+#   certificate: /run/secrets/cert.pem
+#   key: /run/secrets/key.pem
+
+# Let's encrypt for "CHANGEME.com"
+tls:
+  source: "acme"
+  acme:
+    dir: "/var/lib/acme"
+    email: "ammarbanduk@gmail.com"
+    hosts: ["CHANGEME.com"]
+    default-host: "CHANGEME.com"
+
+# If Gateway Server enabled, defaults for "CHANGEME.com":
+gs:
+  mqtt:
+    public-address: "CHANGEME.com:1882"
+    public-tls-address: "CHANGEME.com:8882"
+  mqtt-v2:
+    public-address: "CHANGEME.com:1881"
+    public-tls-address: "CHANGEME.com:8881"
+
+# If Gateway Configuration Server enabled, defaults for "CHANGEME.com":
+gcs:
+  basic-station:
+    default:
+      lns-uri: "wss://CHANGEME.com:8887"
+  the-things-gateway:
+    default:
+      mqtt-server: "mqtts://CHANGEME.com:8881"
+
+# Web UI configuration for "CHANGEME.com":
+console:
+  ui:
+    canonical-url: "https://CHANGEME.com/console"
+    account-url: "https://CHANGEME.com/oauth"
+    is:
+      base-url: "https://CHANGEME.com/api/v3"
+    gs:
+      base-url: "https://CHANGEME.com/api/v3"
+    gcs:
+      base-url: "https://CHANGEME.com/api/v3"
+    ns:
+      base-url: "https://CHANGEME.com/api/v3"
+    as:
+      base-url: "https://CHANGEME.com/api/v3"
+    js:
+      base-url: "https://CHANGEME.com/api/v3"
+    qrg:
+      base-url: "https://CHANGEME.com/api/v3"
+    edtc:
+      base-url: "https://CHANGEME.com/api/v3"
+    dcs:
+      base-url: "https://CHANGEME.com/api/v3"
+  oauth:
+    authorize-url: "https://CHANGEME.com/oauth/authorize"
+    token-url: "https://CHANGEME.com/oauth/token"
+    logout-url: "https://CHANGEME.com/oauth/logout"
+    client-id: "console"
+    client-secret: "console" # choose or generate a secret
+
+# If Application Server enabled, defaults for "CHANGEME.com":
+as:
+  mqtt:
+    public-address: "CHANGEME.com:1883"
+    public-tls-address: "CHANGEME.com:8883"
+  webhooks:
+    downlink:
+      public-address: "CHANGEME.com:1885/api/v3"
+
+# If Device Claiming Server enabled, defaults for "CHANGEME.com":
+dcs:
+  oauth:
+    authorize-url: "https://CHANGEME.com/oauth/authorize"
+    token-url: "https://CHANGEME.com/oauth/token"
+    logout-url: "https://CHANGEME.com/oauth/logout"
+    client-id: "device-claiming"
+    client-secret: "device-claiming" # choose or generate a secret
+  ui:
+    canonical-url: "https://CHANGEME.com/claim"
+    as:
+      base-url: "https://CHANGEME.com/api/v3"
+    dcs:
+      base-url: "https://CHANGEME.com/api/v3"
+    is:
+      base-url: "https://CHANGEME.com/api/v3"
+    ns:
+      base-url: "https://CHANGEME.com/api/v3"
