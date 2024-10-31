@@ -1,6 +1,3 @@
-Sure, here's a typical `README.md` for your GitHub repository:
-
-```markdown
 # Docker-Compose Solutions for MQTT to PostgreSQL and LoRaWAN Network Server
 
 This repository contains sample scripts demonstrating two Docker-Compose solutions. The first solution deploys two custom containers that run a Python script subscribing to an MQTT broker and inserting the payload into a SQL table on a PostgreSQL database. The second solution, located in the `lorawan-network-server-deploy` subfolder, contains reference files based on the Docker deploy instructions for The Things Stack LoRaWAN Network Server.
