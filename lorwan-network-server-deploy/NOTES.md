@@ -1,6 +1,6 @@
 # READ
 
-[https://www.thethingsindustries.com/docs/the-things-stack/host/docker/configuration/](ThingStack LoRaWAN Instruction and Documentation for Docker)
+(https://www.thethingsindustries.com/docs/the-things-stack/host/docker/configuration/)[ThingStack LoRaWAN Instruction and Documentation for Docker]
 
 Please ensure you look at localhost with self signed cert if doing on your personal machine, or if deploying to cloud virtual machine you undertand the process of using [https://certbot.eff.org/](LetsEncrypt) to secure your domain HTTPS endpoint.
 
