@@ -1,45 +1,73 @@
-# Docker-Compose Solutions for MQTT to PostgreSQL and LoRaWAN Network Server
 
-This repository contains sample scripts demonstrating two Docker-Compose solutions. The first solution deploys two custom containers that run a Python script subscribing to an MQTT broker and inserting the payload into a SQL table on a PostgreSQL database. The second solution, located in the `lorawan-network-server-deploy` subfolder, contains reference files based on the Docker deploy instructions for The Things Stack LoRaWAN Network Server.
+# IIoT MQTT to PostgreSQL & LoRaWAN Network Server
 
-## Getting Started
+<!-- Badges example: add your own as needed -->
+![Docker](https://img.shields.io/badge/docker-ready-blue)
+![Python](https://img.shields.io/badge/python-3.11%2B-blue)
 
-These instructions will help you set up and run the Docker-Compose solutions on your local machine for development and testing purposes.
+This repository provides two Docker Compose solutions:
+
+- **MQTT to PostgreSQL**: A Python-based service that subscribes to an MQTT broker and inserts received payloads into a PostgreSQL database.
+- **LoRaWAN Network Server**: Reference deployment files for [The Things Stack LoRaWAN Network Server](https://www.thethingsindustries.com/docs/the-things-stack/host/docker/configuration/), located in the `lorawan-network-server-deploy` directory.
+
+---
+
+## Features
+
+- End-to-end IIoT data pipeline: MQTT → Python → PostgreSQL
+- Easy local or cloud deployment with Docker Compose
+- Reference setup for LoRaWAN network server
+
+---
 
 ## Prerequisites
 
-- Docker
-- Docker-Compose
-- Python 3.11.x
-- PostgreSQL
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [Python 3.11+](https://www.python.org/downloads/)
+- [PostgreSQL](https://www.postgresql.org/)
 
-## Installation
+---
 
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/yourusername/your-repo-name.git
-    cd your-repo-name
-    ```
+## Getting Started
 
-2. Build and run the Docker-Compose solutions:
-    ```sh
-    docker-compose up --build
-    ```
+### 1. Clone the Repository
+
+```sh
+git clone https://github.com/yourusername/iiot-mqtt-postgres.git
+cd iiot-mqtt-postgres
+```
+
+### 2. Build and Start the Services
+
+```sh
+docker-compose up --build
+```
+
+---
 
 ## Usage
 
-### MQTT to PostgreSQL
+### MQTT to PostgreSQL Pipeline
 
-1. Ensure your MQTT broker is running and accessible.
-2. The Python script in the first Docker-Compose solution will subscribe to the MQTT broker and insert the received payloads into the PostgreSQL database.
+1. Ensure your MQTT broker is running and accessible (update connection details in `src/mqttconnector.py` if needed).
+2. The Python service will subscribe to the MQTT broker and insert incoming messages into the PostgreSQL database.
+3. You can modify the topic, broker address, and database credentials in the configuration or environment variables as needed.
 
 ### LoRaWAN Network Server
 
-1. Navigate to the `lorawan-network-server-deploy` subfolder:
+1. Navigate to the deployment folder:
     ```sh
     cd lorawan-network-server-deploy
     ```
-2. Follow the instructions in the reference files to deploy The Things Stack LoRaWAN Network Server.
+2. Review and update configuration files as needed (see `NOTES.md` for tips).
+3. Start the LoRaWAN stack:
+    ```sh
+    docker-compose up --build
+    ```
+4. Follow [The Things Stack documentation](https://www.thethingsindustries.com/docs/the-things-stack/host/docker/configuration/) for advanced setup and security.
+
+---
 
 ## Project Structure
 
@@ -48,11 +76,34 @@ These instructions will help you set up and run the Docker-Compose solutions on 
 ├── requirements.txt
 ├── docker-compose.yml
 ├── Dockerfile
-├── src
+├── src/
+│   ├── __init__.py
 │   ├── main.py
 │   └── mqttconnector.py
-└── lorawan-network-server-deploy
+└── lorawan-network-server-deploy/
     ├── docker-compose.yml
-    ├── config/stack
-    └── ttn-lw-stack-docker.yml
+    ├── NOTES.md
+    └── config/
+        └── stack/
+            └── ttn-lw-stack-docker.yml
 ```
+
+---
+
+## Configuration
+
+- Edit `src/mqttconnector.py` and `src/main.py` to set MQTT topics, broker address, and database credentials.
+- Update environment variables in `docker-compose.yml` as needed.
+- For LoRaWAN, see `lorawan-network-server-deploy/NOTES.md` for setup and security tips.
+
+---
+
+## Contributing
+
+Contributions are welcome! Please open issues or submit pull requests for improvements or bug fixes.
+
+---
+
+## License
+
+This project is licensed under the GNU License. See the [LICENSE](LICENSE) file for details.
